@@ -1,6 +1,74 @@
 <UnderlyingGridLayout>
-	Label:
-	    text:
-	        ('Hello World')
-	    markup: True
-	    font_size: '64pt'
+	cols: 1
+    rows: 3
+	StackLayout:
+		canvas.before:
+    		Color:
+				rgba: (192, 192, 192, .5) # green; colors range from 0-1 instead of 0-255
+        	Rectangle:
+            # self here refers to the widget i.e BoxLayout
+            	pos: self.pos
+            	size: self.size
+		cols: 1
+		rows: 2
+        id: output
+        orientation: 'lr-tb'
+		Label:
+		    background_color: 1, 1, 1, 1
+		    canvas.before:
+		        Color:
+		            rgba: (0, 0, 128, .5) # green; colors range from 0-1 instead of 0-255
+		    text: 'Activity 1'
+			text_size: root.width, None
+			size: root.size_hint_y, 50
+		Label:
+		    background_color: 1, 1, 1, 1
+		    canvas.before:
+		        Color:
+		            rgba: (0, 0, 128, .5) # green; colors range from 0-1 instead of 0-255
+		    text: 'Activity 2'
+			text_size: root.width, None
+			size: root.size_hint_y, 50
+		Label:
+		    background_color: 1, 1, 1, 1
+		    canvas.before:
+		        Color:
+		            rgba: (0, 0, 128, .5) # green; colors range from 0-1 instead of 0-255
+		    text: 'Activity 3'
+			text_size: root.width, None
+			size: root.size_hint_y, 50
+
+    ScrollView:
+        size_hint: (None, None)
+        size: (400, 400)
+        BoxLayout:
+            id: output
+            orientation: 'vertical'
+			Button:
+				id: hello
+	            text: 'box 2'
+	            size_hint_x: None
+	            width: 100
+	            size_hint_y: None
+	            height: 40
+	            on_press: root.on_event()
+	AnchorLayout:
+		canvas.before:
+    		Color:
+				rgba: (192, 192, 192, .5) # green; colors range from 0-1 instead of 0-255
+        	Rectangle:
+            # self here refers to the widget i.e BoxLayout
+            	pos: self.pos
+            	size: self.size
+
+        id: output
+        orientation: 'center'
+        Button:
+			id: hello
+			text: 'Add Activity'
+			font_size:'30sp'
+			size_hint_x: .5
+			width: 40
+			size_hint_y: .5
+			height: 40
+			on_press: root.on_event()
