@@ -59,16 +59,16 @@
         	Rectangle:
             # self here refers to the widget i.e BoxLayout
             	pos: self.pos
-            	size: self.size
+            	size: 600, 100
 
         id: output
         orientation: 'center'
         Button:
 			id: hello
 			text: 'Add Activity'
-			font_size:'30sp'
-			size_hint_x: .5
-			width: 40
-			size_hint_y: .5
-			height: 40
+			font_size:'10sp'
+			size_hint_x: None
+			width: 70
+			size_hint_y: None
+			height: 60
 			on_press: root.on_event()
