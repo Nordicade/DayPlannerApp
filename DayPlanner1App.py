@@ -4,22 +4,12 @@
 import kivy
 from kivy.app import App
 from kivy.uix.label import Label
+from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.stacklayout import StackLayout
-from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.scrollview import ScrollView
-from kivy.uix.boxlayout import BoxLayout
 from kivy.graphics import Color, Rectangle
 from kivy.uix.widget import Widget
-
-class UnderlyingGridLayout(GridLayout):
-    def __init__(self, **keywordArgs):
-        super(UnderlyingGridLayout, self).__init__(**keywordArgs)
-        self.cols = 1
-        self.rows = 3
-        #self.add_widget(Label(text="Name: "))
-        #self.add_widget(Label(text="Age: "))
-        #self.add_widget(BottomButton())
 
 class CustomWidgets(Widget):
     pass
@@ -29,8 +19,11 @@ class CustomAnchorLayout(AnchorLayout):
 
 class DayPlanner1App(App):
     def build(self):
-        return CustomWidgets()
-
+        #underlying_layout = GridLayout(orientation = 'vertical')
+        #top_layout =
+        #mid_layout = CustomBoxLayout()
+        bottom_layout = CustomAnchorLayout()
+        return CustomAnchorLayout()
 
 if __name__ == "__main__":
     DayPlanner1App().run()
