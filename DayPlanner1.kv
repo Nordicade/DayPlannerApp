@@ -10,6 +10,13 @@
 
     StackLayout:
         padding: 50,50,50,50
+        canvas:
+            Color:
+                rgba:0, 128/255, 128/255, .7
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    #128/255, 128/255, 128/255, .8
         Button:
             color: 0, 1, 0, 1
             text: 'top'
@@ -23,23 +30,43 @@
             row_default_height: 60
             size_hint_y: None
             Label:
-                height: 30
+                height: 20
                 text: 'Activities'
             StackLayout:
                 cols: 3
                 rows: 1
                 orientation: 'lr-tb'
                 size_hint: self.x, None
-                #size: root.width * .8 , root.hegiht * 0.8
                 Button:
                     color: 0, 1, 0, 1
                     text: '+'
                     font_size:'20sp'
-                    #size: self.x , 100
                     size_hint: .25, None
                 TextInput:
                     multiline: False
+                    font_size:'20sp'
                     size_hint: .5, None
+                    padding: [20,40,0,0]
+                Button:
+                    color: 0, 1, 0, 1
+                    text: '...'
+                    font_size:'20sp'
+                    size_hint: .25, None
+            StackLayout:
+                cols: 3
+                rows: 1
+                orientation: 'lr-tb'
+                size_hint: self.x, None
+                Button:
+                    color: 0, 1, 0, 1
+                    text: '+'
+                    font_size:'20sp'
+                    size_hint: .25, None
+                TextInput:
+                    multiline: False
+                    font_size:'20sp'
+                    size_hint: .5, None
+                    padding: [20,40,0,0]
                 Button:
                     color: 0, 1, 0, 1
                     text: '...'
@@ -59,7 +86,9 @@
                     size_hint: .25, None
                 TextInput:
                     multiline: False
+                    font_size:'20sp'
                     size_hint: .5, None
+                    padding: [20,40,0,0]
                 Button:
                     color: 0, 1, 0, 1
                     text: '...'
@@ -79,27 +108,9 @@
                     size_hint: .25, None
                 TextInput:
                     multiline: False
-                    size_hint: .5, None
-                Button:
-                    color: 0, 1, 0, 1
-                    text: '...'
                     font_size:'20sp'
-                    size_hint: .25, None
-            StackLayout:
-                cols: 3
-                rows: 1
-                orientation: 'lr-tb'
-                size_hint: self.x, None
-                #size: root.width * .8 , root.hegiht * 0.8
-                Button:
-                    color: 0, 1, 0, 1
-                    text: '+'
-                    font_size:'20sp'
-                    #size: self.x , 100
-                    size_hint: .25, None
-                TextInput:
-                    multiline: False
                     size_hint: .5, None
+                    padding: [20,40,0,0]
                 Button:
                     color: 0, 1, 0, 1
                     text: '...'
@@ -107,24 +118,38 @@
                     size_hint: .25, None
 
     AnchorLayout:
-        padding: 50,50,50,50
+        size_hint_y: .4    #uncheck to reduce height of bottom button
+        canvas:
+            Color:
+                rgba:0, 128/255, 128/255, .9
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        padding: 10,10,10,10
         Button:
             color: 0, 1, 0, 1
-            text: 'Add Action'
+            text: 'Add Activity'
             font_size:'20sp'
             number: 1
 
 <CustomWidgets>
-    GridLayout:
+    StackLayout:
         cols: 3
+        rows: 1
+        orientation: 'lr-tb'
+        size_hint: self.x, None
         #size: root.width * .8 , root.hegiht * 0.8
         Button:
             color: 0, 1, 0, 1
             text: '+'
             font_size:'20sp'
+            #size: self.x , 100
+            size_hint: .25, None
         TextInput:
             multiline: False
+            size_hint: .5, None
         Button:
             color: 0, 1, 0, 1
             text: '...'
             font_size:'20sp'
+            size_hint: .25, None
