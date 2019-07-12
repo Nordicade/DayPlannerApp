@@ -2,13 +2,32 @@
 # :kivy 1.11.1
 # by Nicholas Nord
 
-<CustomAnchorLayout>:
-    padding: 50,50,50,50
-    Button:
-        color: 0, 1, 0, 1
-        text: 'Add Action'
-        font_size:'20sp'
-        number: 1
+<CustomGridLayout>:
+    id: underlying_layout
+    orientation: 'vertical'
+    cols: 1
+    row: 3
+    StackLayout:
+        padding: 50,50,50,50
+        Button:
+            color: 0, 1, 0, 1
+            text: '1'
+            font_size:'20sp'
+            number: 1
+    BoxLayout:
+        padding: 50,50,50,50
+        Button:
+            color: 0, 1, 0, 1
+            text: '2'
+            font_size:'20sp'
+            number: 1
+    AnchorLayout:
+        padding: 50,50,50,50
+        Button:
+            color: 0, 1, 0, 1
+            text: 'Add Action'
+            font_size:'20sp'
+            number: 1
 
 <CustomWidgets>
     Button:
