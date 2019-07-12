@@ -30,11 +30,21 @@
                 text: '1'
                 font_size:'20sp'
                 number: 1
-            Button:
-                color: 0, 1, 0, 1
-                text: '2'
-                font_size:'20sp'
-                number: 2
+
+            GridLayout:
+                cols: 3
+                #size: root.width * .8 , root.hegiht * 0.8
+                Button:
+                    color: 0, 1, 0, 1
+                    text: '+'
+                    font_size:'20sp'
+                TextInput:
+                    multiline: False
+                Button:
+                    color: 0, 1, 0, 1
+                    text: '...'
+                    font_size:'20sp'
+
             Button:
                 color: 0, 1, 0, 1
                 text: '3'
@@ -45,6 +55,11 @@
                 text: '4'
                 font_size:'20sp'
                 number: 4
+            Button:
+                color: 0, 1, 0, 1
+                text: '5'
+                font_size:'20sp'
+                number: 5
 
 
     AnchorLayout:
@@ -56,10 +71,16 @@
             number: 1
 
 <CustomWidgets>
-    Button:
-        pos: 0,0
-        size: 100,100
-        color: 1, 0, 0, 1
-        text: 'x'
-        font_size:'30sp'
-        number: 0
+    GridLayout:
+        cols: 3
+        #size: root.width * .8 , root.hegiht * 0.8
+        Button:
+            color: 0, 1, 0, 1
+            text: '+'
+            font_size:'20sp'
+        TextInput:
+            multiline: False
+        Button:
+            color: 0, 1, 0, 1
+            text: '...'
+            font_size:'20sp'
