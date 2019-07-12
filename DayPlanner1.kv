@@ -24,43 +24,87 @@
             size_hint_y: None
             Label:
                 height: 30
-                text: 'Label One'
-            Button:
-                color: 0, 1, 0, 1
-                text: '1'
-                font_size:'20sp'
-                number: 1
-
-            GridLayout:
+                text: 'Activities'
+            StackLayout:
                 cols: 3
+                rows: 1
+                orientation: 'lr-tb'
+                size_hint: self.x, None
                 #size: root.width * .8 , root.hegiht * 0.8
                 Button:
                     color: 0, 1, 0, 1
                     text: '+'
                     font_size:'20sp'
+                    #size: self.x , 100
+                    size_hint: .25, None
                 TextInput:
                     multiline: False
+                    size_hint: .5, None
                 Button:
                     color: 0, 1, 0, 1
                     text: '...'
                     font_size:'20sp'
-
-            Button:
-                color: 0, 1, 0, 1
-                text: '3'
-                font_size:'20sp'
-                number: 3
-            Button:
-                color: 0, 1, 0, 1
-                text: '4'
-                font_size:'20sp'
-                number: 4
-            Button:
-                color: 0, 1, 0, 1
-                text: '5'
-                font_size:'20sp'
-                number: 5
-
+                    size_hint: .25, None
+            StackLayout:
+                cols: 3
+                rows: 1
+                orientation: 'lr-tb'
+                size_hint: self.x, None
+                #size: root.width * .8 , root.hegiht * 0.8
+                Button:
+                    color: 0, 1, 0, 1
+                    text: '+'
+                    font_size:'20sp'
+                    #size: self.x , 100
+                    size_hint: .25, None
+                TextInput:
+                    multiline: False
+                    size_hint: .5, None
+                Button:
+                    color: 0, 1, 0, 1
+                    text: '...'
+                    font_size:'20sp'
+                    size_hint: .25, None
+            StackLayout:
+                cols: 3
+                rows: 1
+                orientation: 'lr-tb'
+                size_hint: self.x, None
+                #size: root.width * .8 , root.hegiht * 0.8
+                Button:
+                    color: 0, 1, 0, 1
+                    text: '+'
+                    font_size:'20sp'
+                    #size: self.x , 100
+                    size_hint: .25, None
+                TextInput:
+                    multiline: False
+                    size_hint: .5, None
+                Button:
+                    color: 0, 1, 0, 1
+                    text: '...'
+                    font_size:'20sp'
+                    size_hint: .25, None
+            StackLayout:
+                cols: 3
+                rows: 1
+                orientation: 'lr-tb'
+                size_hint: self.x, None
+                #size: root.width * .8 , root.hegiht * 0.8
+                Button:
+                    color: 0, 1, 0, 1
+                    text: '+'
+                    font_size:'20sp'
+                    #size: self.x , 100
+                    size_hint: .25, None
+                TextInput:
+                    multiline: False
+                    size_hint: .5, None
+                Button:
+                    color: 0, 1, 0, 1
+                    text: '...'
+                    font_size:'20sp'
+                    size_hint: .25, None
 
     AnchorLayout:
         padding: 50,50,50,50
