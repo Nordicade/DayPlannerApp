@@ -15,7 +15,13 @@ from kivy.uix.widget import Widget
 class CustomWidgets(Widget):
     pass
 
-class CustomGridLayout(GridLayout):
+class CustomGridLayout(GridLayout):    
+    def bump_activity(self):
+        print("bump_activity")
+
+    def add_activity(self):
+        print("add_activity")
+
     pass
 
 class CustomStackLayout(StackLayout):
@@ -30,13 +36,8 @@ class CustomAnchorLayout(AnchorLayout):
 class DayPlanner1App(App):
     def build(self):
         underlying_layout = CustomGridLayout()
-        #top_layout = CustomStackLayout()
-        #mid_layout = CustomBoxLayout()
-        #bottom_layout = CustomAnchorLayout()
-        #underlying_layout.add(top_layout)
-        #underlying_layout.add(mid_layout)
-        #underlying_layout.add(bottom_layout)
         return underlying_layout
+
 
 if __name__ == "__main__":
     DayPlanner1App().run()
