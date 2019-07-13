@@ -10,17 +10,27 @@ from kivy.uix.stacklayout import StackLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.scrollview import ScrollView
 from kivy.graphics import Color, Rectangle
+from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
 
 class CustomWidgets(Widget):
+    c_w = ObjectProperty()
+    def bump_activity(self):
+        print("bump_activity - CustomWidgets Method")
     pass
 
-class CustomGridLayout(GridLayout):    
+class CustomGridLayout(GridLayout):
     def bump_activity(self):
         print("bump_activity")
 
     def add_activity(self):
         print("add_activity")
+        self.ids['activity_list_layout'].add_widget(CustomWidgets())    # wrong, but figure out why.
+        #https://stackoverflow.com/questions/46984515/kivy-adding-buttons-in-a-sub-layout-when-a-button-is-pressed-on-release
+        #should eventually have CustomGridLayout empty and CustomWidgets should hold these activity functions
+
+    def modify_activity(self):
+        print("modify_activity")
 
     pass
 

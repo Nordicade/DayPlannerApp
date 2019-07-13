@@ -25,6 +25,7 @@
 
     ScrollView:
         GridLayout:
+            id: activity_list_layout
             height: self.minimum_height
             cols: 1
             row_default_height: 60
@@ -53,6 +54,7 @@
                     text: '...'
                     font_size:'20sp'
                     size_hint: .25, None
+                    on_press: root.modify_activity()
             StackLayout:
                 cols: 3
                 rows: 1
@@ -74,29 +76,7 @@
                     text: '...'
                     font_size:'20sp'
                     size_hint: .25, None
-            StackLayout:
-                cols: 3
-                rows: 1
-                orientation: 'lr-tb'
-                size_hint: self.x, None
-                #size: root.width * .8 , root.hegiht * 0.8
-                Button:
-                    color: 0, 1, 0, 1
-                    text: '+'
-                    font_size:'20sp'
-                    #size: self.x , 100
-                    size_hint: .25, None
-                    on_press: root.bump_activity()
-                TextInput:
-                    multiline: False
-                    font_size:'20sp'
-                    size_hint: .5, None
-                    padding: [20,40,0,0]
-                Button:
-                    color: 0, 1, 0, 1
-                    text: '...'
-                    font_size:'20sp'
-                    size_hint: .25, None
+                    on_press: root.modify_activity()
             StackLayout:
                 cols: 3
                 rows: 1
@@ -120,6 +100,31 @@
                     text: '...'
                     font_size:'20sp'
                     size_hint: .25, None
+                    on_press: root.modify_activity()
+            StackLayout:
+                cols: 3
+                rows: 1
+                orientation: 'lr-tb'
+                size_hint: self.x, None
+                #size: root.width * .8 , root.hegiht * 0.8
+                Button:
+                    color: 0, 1, 0, 1
+                    text: '+'
+                    font_size:'20sp'
+                    #size: self.x , 100
+                    size_hint: .25, None
+                    on_press: root.bump_activity()
+                TextInput:
+                    multiline: False
+                    font_size:'20sp'
+                    size_hint: .5, None
+                    padding: [20,40,0,0]
+                Button:
+                    color: 0, 1, 0, 1
+                    text: '...'
+                    font_size:'20sp'
+                    size_hint: .25, None
+                    on_press: root.modify_activity()
 
     AnchorLayout:
         size_hint_y: .4    #uncheck to reduce height of bottom button
