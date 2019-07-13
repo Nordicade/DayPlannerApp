@@ -7,7 +7,6 @@
     orientation: 'vertical'
     cols: 1
     row: 3
-
     StackLayout:
         id: top_layout
         padding: 50,50,50,50
@@ -125,6 +124,7 @@
                     font_size:'20sp'
                     size_hint: .25, None
                     on_press: root.modify_activity()
+            #CustomWidgets:
 
     AnchorLayout:
         size_hint_y: .4    #uncheck to reduce height of bottom button
@@ -146,8 +146,9 @@
         cols: 3
         rows: 1
         orientation: 'lr-tb'
-        size_hint: self.x, None
-        #size: root.width * .8 , root.hegiht * 0.8
+        #size_hint: self.x, self.y
+        #size:600 , 150
+        #size_hint : None, None
         Button:
             color: 0, 1, 0, 1
             text: '+'

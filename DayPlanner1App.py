@@ -14,9 +14,10 @@ from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
 
 class CustomWidgets(Widget):
-    c_w = ObjectProperty()
+    c_w = ObjectProperty() #maybe do this for underlying_layout or CustomGridLayout instead of widget
     def bump_activity(self):
         print("bump_activity - CustomWidgets Method")
+        #self.ids['activity_list_layout'].add_widget(CustomWidgets())
     pass
 
 class CustomGridLayout(GridLayout):
@@ -25,7 +26,7 @@ class CustomGridLayout(GridLayout):
 
     def add_activity(self):
         print("add_activity")
-        self.ids['activity_list_layout'].add_widget(CustomWidgets())    # wrong, but figure out why.
+        self.ids['activity_list_layout'].add_widget(CustomWidgets())
         #https://stackoverflow.com/questions/46984515/kivy-adding-buttons-in-a-sub-layout-when-a-button-is-pressed-on-release
         #should eventually have CustomGridLayout empty and CustomWidgets should hold these activity functions
 
