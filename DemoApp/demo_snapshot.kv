@@ -1,0 +1,72 @@
+# File name: demo.kv
+# :kivy 1.11.1
+
+<CustomGridLayout>:
+    id: underlying_layout
+    orientation: 'vertical'
+    cols: 1
+    row: 2
+
+    ScrollView:
+        GridLayout:
+            id: list_layout
+            cols: 1
+            height: self.minimum_height
+            row_default_height: 60
+            size_hint_y: None
+            Label:
+                height: 20
+                text: 'List:'
+            StackLayout:
+                cols: 3
+                rows: 1
+                size_hint: self.x, None
+                height: 80
+                Button:
+                    size_hint: .25, None
+                TextInput:
+                    size_hint: .5, None
+                Button:
+                    size_hint: .25, None
+            StackLayout:
+                cols: 3
+                rows: 1
+                size_hint: self.x, None
+                height: 80
+                Button:
+                    size_hint: .25, None
+                TextInput:
+                    size_hint: .5, None
+                Button:
+                    size_hint: .25, None
+            StackLayout:
+                cols: 3
+                rows: 1
+                size_hint: self.x, None
+                height: 80
+                Button:
+                    size_hint: .25, None
+                TextInput:
+                    size_hint: .5, None
+                Button:
+                    size_hint: .25, None
+
+    AnchorLayout:
+        size_hint_y: .4
+        Button:
+            text: 'Add List Item'
+            on_press: root.add_list_item()
+
+<CustomWidgets>
+    StackLayout:
+        cols: 3
+        rows: 1
+        orientation: 'lr-tb'
+        size_hint: self.x, None   #<-- Is there a size_hint I can provide that will adjust size once widget is added?
+        height: 80
+        Button:
+            size_hint: .25, None
+        TextInput:
+            size_hint: .5, None
+        Button:
+            size_hint: .25, None

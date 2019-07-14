@@ -13,35 +13,36 @@ from kivy.graphics import Color, Rectangle
 from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
 
-class CustomWidgets(Widget):
-    c_w = ObjectProperty() #maybe do this for underlying_layout or CustomGridLayout instead of widget
+increment = 1
+
+class CustomWidgets(StackLayout):
     def bump_activity(self):
-        print("bump_activity - CustomWidgets Method")
-        #self.ids['activity_list_layout'].add_widget(CustomWidgets())
+        CustomGridLayout.bump_activity(self)
+
+    def on_parent(self, screen, parent):
+        #print("rows: " + str(parent.rows))  #Rows = None, despite it adding for each new Custom Widget...?
+        x = parent.parent
+        pass
+
     pass
 
 class CustomGridLayout(GridLayout):
     def bump_activity(self):
+        self.remove_widget(self.children[0])
+        self.remove_widget(self.children[0])
+        self.remove_widget(self.children[0])
+        #x = CustomGridLayout.ids['activity_list_layout']
         print("bump_activity")
 
     def add_activity(self):
         print("add_activity")
+        # keep in mind, self is the CustomGridLayout 
         self.ids['activity_list_layout'].add_widget(CustomWidgets())
         #https://stackoverflow.com/questions/46984515/kivy-adding-buttons-in-a-sub-layout-when-a-button-is-pressed-on-release
-        #should eventually have CustomGridLayout empty and CustomWidgets should hold these activity functions
 
     def modify_activity(self):
         print("modify_activity")
 
-    pass
-
-class CustomStackLayout(StackLayout):
-    pass
-
-class CustomBoxLayout(BoxLayout):
-    pass
-
-class CustomAnchorLayout(AnchorLayout):
     pass
 
 class DayPlanner1App(App):

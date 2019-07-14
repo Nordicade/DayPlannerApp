@@ -16,118 +16,25 @@
             Rectangle:
                 pos: self.pos
                 size: self.size
-    #128/255, 128/255, 128/255, .8
         Button:
             color: 0, 1, 0, 1
             text: 'top'
             font_size:'20sp'
 
     ScrollView:
+        id: scroller
         GridLayout:
             id: activity_list_layout
             height: self.minimum_height
             cols: 1
             row_default_height: 60
-            size_hint_y: None
+            size_hint: 1 , None
             Label:
                 height: 20
                 text: 'Activities'
-            StackLayout:
-                cols: 3
-                rows: 1
-                orientation: 'lr-tb'
-                size_hint: self.x, None
-                Button:
-                    color: 0, 1, 0, 1
-                    text: '+'
-                    font_size:'20sp'
-                    size_hint: .25, None
-                    on_press: root.bump_activity()
-                TextInput:
-                    multiline: False
-                    font_size:'20sp'
-                    size_hint: .5, None
-                    padding: [20,40,0,0]
-                Button:
-                    color: 0, 1, 0, 1
-                    text: '...'
-                    font_size:'20sp'
-                    size_hint: .25, None
-                    on_press: root.modify_activity()
-            StackLayout:
-                cols: 3
-                rows: 1
-                orientation: 'lr-tb'
-                size_hint: self.x, None
-                Button:
-                    color: 0, 1, 0, 1
-                    text: '+'
-                    font_size:'20sp'
-                    size_hint: .25, None
-                    on_press: root.bump_activity()
-                TextInput:
-                    multiline: False
-                    font_size:'20sp'
-                    size_hint: .5, None
-                    padding: [20,40,0,0]
-                Button:
-                    color: 0, 1, 0, 1
-                    text: '...'
-                    font_size:'20sp'
-                    size_hint: .25, None
-                    on_press: root.modify_activity()
-            StackLayout:
-                cols: 3
-                rows: 1
-                orientation: 'lr-tb'
-                size_hint: self.x, None
-                #size: root.width * .8 , root.hegiht * 0.8
-                Button:
-                    color: 0, 1, 0, 1
-                    text: '+'
-                    font_size:'20sp'
-                    #size: self.x , 100
-                    size_hint: .25, None
-                    on_press: root.bump_activity()
-                TextInput:
-                    multiline: False
-                    font_size:'20sp'
-                    size_hint: .5, None
-                    padding: [20,40,0,0]
-                Button:
-                    color: 0, 1, 0, 1
-                    text: '...'
-                    font_size:'20sp'
-                    size_hint: .25, None
-                    on_press: root.modify_activity()
-            StackLayout:
-                cols: 3
-                rows: 1
-                orientation: 'lr-tb'
-                size_hint: self.x, None
-                #size: root.width * .8 , root.hegiht * 0.8
-                Button:
-                    color: 0, 1, 0, 1
-                    text: '+'
-                    font_size:'20sp'
-                    #size: self.x , 100
-                    size_hint: .25, None
-                    on_press: root.bump_activity()
-                TextInput:
-                    multiline: False
-                    font_size:'20sp'
-                    size_hint: .5, None
-                    padding: [20,40,0,0]
-                Button:
-                    color: 0, 1, 0, 1
-                    text: '...'
-                    font_size:'20sp'
-                    size_hint: .25, None
-                    on_press: root.modify_activity()
-            #CustomWidgets:
 
     AnchorLayout:
-        size_hint_y: .4    #uncheck to reduce height of bottom button
+        size_hint_y: .4
         canvas:
             Color:
                 rgba:0, 128/255, 128/255, .9
@@ -142,27 +49,30 @@
             on_press: root.add_activity()
 
 <CustomWidgets>
-    StackLayout:
-        cols: 3
-        rows: 1
-        orientation: 'lr-tb'
-        #size_hint: self.x, self.y
-        #size:600 , 150
-        #size_hint : None, None
-        Button:
-            color: 0, 1, 0, 1
-            text: '+'
-            font_size:'20sp'
-            #size: self.x , 100
-            size_hint: .25, None
-            on_press: root.bump_activity()
-        TextInput:
-            multiline: False
-            font_size:'20sp'
-            size_hint: .5, None
-            padding: [20,40,0,0]
-        Button:
-            color: 0, 1, 0, 1
-            text: '...'
-            font_size:'20sp'
-            size_hint: .25, None
+    cols: 3
+    rows: 1
+    orientation: 'lr-tb'
+    size_hint_y: None
+    height: 100
+    #size_hint: self.x, self.y
+    #size:600 , 150
+    #size_hint : None, None
+    Button:
+        id: partA
+        color: 0, 1, 0, 1
+        text: '+'
+        font_size:'30sp'
+        size_hint: .25, None
+        on_press: root.bump_activity()
+    TextInput:
+        id: partB
+        multiline: False
+        font_size:'30sp'
+        size_hint: .5, None
+        padding: [20,30,0,0]
+    Button:
+        id: partC
+        color: 0, 1, 0, 1
+        text: '...'
+        font_size:'30sp'
+        size_hint: .25, None
