@@ -1,4 +1,4 @@
-# File name: DayPlanner1.kv
+# File name: dayplanner.kv
 # :kivy 1.11.1
 # by Nicholas Nord
 
@@ -7,19 +7,143 @@
     orientation: 'vertical'
     cols: 1
     row: 3
-    StackLayout:
-        id: top_layout
-        padding: 50,50,50,50
-        canvas:
-            Color:
-                rgba:0, 128/255, 128/255, .7
-            Rectangle:
-                pos: self.pos
-                size: self.size
-        Button:
-            color: 0, 1, 0, 1
-            text: 'top'
-            font_size:'20sp'
+    BoxLayout:
+        orientation: 'vertical'
+        FloatLayout:
+            canvas.before:
+                Color:
+                    rgba: 0, .5, .5, .9
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                size_hint: 1, .25
+                pos: (0,0)
+                text: 'example activity'
+        StackLayout:
+            spacing: 3
+            padding: [3, 0, 0, 0]
+            orientation: 'lr-tb'
+            size_hint_y: None
+            height: 20
+            Label:
+                size_hint_x: .083
+                text: '12'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '1'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '2'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '3'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '4'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '5'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '6'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '7'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '8'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '9'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '10'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '11'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+        FloatLayout:
+            canvas.before:
+                Color:
+                    rgba: 0, .5, .5, .5
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                size_hint: 1, None
+                text: 'example activity'
 
     ScrollView:
         id: scroller
@@ -72,7 +196,8 @@
         padding: [20,30,0,0]
     Button:
         id: partC
-        color: 0, 1, 0, 1
-        text: '...'
+        color: 1, 0, 0, 1
+        text: 'x'
         font_size:'30sp'
         size_hint: .25, None
+        on_press: root.remove_activity()

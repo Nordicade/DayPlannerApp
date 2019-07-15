@@ -1,74 +1,216 @@
-<UnderlyingGridLayout>
-	cols: 1
-    rows: 3
-	StackLayout:
-		canvas.before:
-    		Color:
-				rgba: (192, 192, 192, .5) # green; colors range from 0-1 instead of 0-255
-        	Rectangle:
-            # self here refers to the widget i.e BoxLayout
-            	pos: self.pos
-            	size: self.size
-		cols: 1
-		rows: 2
-        id: output
-        orientation: 'lr-tb'
-		Label:
-		    background_color: 1, 1, 1, 1
-		    canvas.before:
-		        Color:
-		            rgba: (0, 0, 128, .5) # green; colors range from 0-1 instead of 0-255
-		    text: 'Activity 1'
-			text_size: root.width, None
-			size: root.size_hint_y, 50
-		Label:
-		    background_color: 1, 1, 1, 1
-		    canvas.before:
-		        Color:
-		            rgba: (0, 0, 128, .5) # green; colors range from 0-1 instead of 0-255
-		    text: 'Activity 2'
-			text_size: root.width, None
-			size: root.size_hint_y, 50
-		Label:
-		    background_color: 1, 1, 1, 1
-		    canvas.before:
-		        Color:
-		            rgba: (0, 0, 128, .5) # green; colors range from 0-1 instead of 0-255
-		    text: 'Activity 3'
-			text_size: root.width, None
-			size: root.size_hint_y, 50
+# File name: DayPlanner1.kv
+# :kivy 1.11.1
+# by Nicholas Nord
+
+<CustomGridLayout>:
+    id: underlying_layout
+    orientation: 'vertical'
+    cols: 1
+    row: 3
+    BoxLayout:
+        id: top_layout
+        orientation: 'vertical'
+        FloatLayout:
+            id: am_layout
+            canvas.before:
+                Color:
+                    rgba: 0, .5, .5, .9
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                size_hint: 1, .25
+                pos: (0,0)
+                text: 'example activity'
+        StackLayout:
+            spacing: 3
+            padding: [3, 0, 0, 0]
+            orientation: 'lr-tb'
+            size_hint_y: None
+            height: 20
+            Label:
+                size_hint_x: .083
+                text: '12'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '1'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '2'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '3'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '4'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '5'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '6'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '7'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '8'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '9'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '10'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                size_hint_x: .083
+                text: '11'
+                canvas.before:
+                    Color:
+                        rgba: 0.75,0.75,0.75,.6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+        FloatLayout:
+            id: pm_layout
+            canvas.before:
+                Color:
+                    rgba: 0, .5, .5, .5
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                size_hint: 1, None
+                text: 'example activity'
 
     ScrollView:
-        size_hint: (None, None)
-        size: (400, 400)
-        BoxLayout:
-            id: output
-            orientation: 'vertical'
-			Button:
-				id: hello
-	            text: 'box 2'
-	            size_hint_x: None
-	            width: 100
-	            size_hint_y: None
-	            height: 40
-	            on_press: root.on_event()
-	AnchorLayout:
-		canvas.before:
-    		Color:
-				rgba: (192, 192, 192, .5) # green; colors range from 0-1 instead of 0-255
-        	Rectangle:
-            # self here refers to the widget i.e BoxLayout
-            	pos: self.pos
-            	size: 600, 100
+        id: scroller
+        GridLayout:
+            id: activity_list_layout
+            height: self.minimum_height
+            cols: 1
+            row_default_height: 60
+            size_hint: 1 , None
+            Label:
+                height: 20
+                text: 'Activities'
 
-        id: output
-        orientation: 'center'
+    AnchorLayout:
+        size_hint_y: .4
+        canvas:
+            Color:
+                rgba:0, 128/255, 128/255, .9
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        padding: 10,10,10,10
         Button:
-			id: hello
-			text: 'Add Activity'
-			font_size:'10sp'
-			size_hint_x: None
-			width: 70
-			size_hint_y: None
-			height: 60
-			on_press: root.on_event()
+            color: 0, 1, 0, 1
+            text: 'Add Activity'
+            font_size:'20sp'
+            on_press: root.add_activity()
+
+<CustomWidgets>
+    cols: 3
+    rows: 1
+    orientation: 'lr-tb'
+    size_hint_y: None
+    height: 100
+    #size_hint: self.x, self.y
+    #size:600 , 150
+    #size_hint : None, None
+    Button:
+        id: partA
+        color: 0, 1, 0, 1
+        text: '+'
+        font_size:'30sp'
+        size_hint: .25, None
+        on_press: root.bump_activity()
+    TextInput:
+        id: partB
+        multiline: False
+        font_size:'30sp'
+        size_hint: .5, None
+        padding: [20,30,0,0]
+    Button:
+        id: partC
+        color: 1, 0, 0, 1
+        text: 'x'
+        font_size:'30sp'
+        size_hint: .25, None
+        on_press: root.remove_activity()
+
+<CustomLabels>
+    Label:
+        text: '5'
+        canvas.before:
+            Color:
+                rgba: 1,0,0,.2
+            Rectangle:
+                pos: self.pos
+                size: self.size
