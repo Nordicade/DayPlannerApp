@@ -11,6 +11,7 @@
         id: top_layout
         orientation: 'vertical'
         FloatLayout:
+            size_hint : 1,1
             id: am_layout
             canvas.before:
                 Color:
@@ -206,11 +207,3 @@
         on_press: root.remove_activity()
 
 <CustomLabels>
-    Label:
-        text: '5'
-        canvas.before:
-            Color:
-                rgba: 1,0,0,.2
-            Rectangle:
-                pos: self.pos
-                size: self.size

@@ -22,7 +22,6 @@ class CustomWidgets(StackLayout):
         grid_layout.remove_widget(self)
         print("bump_activity")
 
-
     def remove_activity(self):
         grid_layout = self.parent
         grid_layout.remove_widget(self)
@@ -30,10 +29,23 @@ class CustomWidgets(StackLayout):
 
     pass
 
-class CustomLabels(Label):
+class CustomLabels(Widget):
+    def build(self, activity_text):
+        print("building label: " + activity_text)
+        lbl = Label(text = activity_text, color = [1,1,1,1])
+        self.add_widget(lbl)
     #retrieve color based upon widget widget_count
     #check pos and size of existing CustomWidgets
     #place new label at first remaining spot
+
+    def on_touch_move(self, touch):
+        if self.collide_point(*touch.pos):
+            rint("on_touch_move")
+
+    def on_touch_down(self, touch):
+        if self.collide_point(*touch.pos):
+            print("on_touch_down")
+
     pass
 
 class CustomGridLayout(GridLayout):
@@ -46,12 +58,13 @@ class CustomGridLayout(GridLayout):
     def display_activity(self):
         activity_text = self.ids['partB'].text
         underlying_layout = self.parent.parent.parent
-        print(underlying_layout)
         #top_layout = underlying_layout.ids['top_layout']
         #top_layout.ids['am_layout'].add_widget(CustomLabels())
-        underlying_layout.ids['am_layout'].add_widget(CustomLabels())
-        print("grid_layout says: " + activity_text)
-    pass
+        am_layout = underlying_layout.ids['am_layout']
+        CustomLabels.build(am_layout, activity_text)
+        #am_layout.add_widget(CustomLabels.build(activity_text))
+        #am_layout.add_widget(CustomLabels().build(activity_text))
+
 
 class DayPlannerApp(App):
     def build(self):
