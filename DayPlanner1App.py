@@ -17,33 +17,12 @@ widget_count = 0
 
 class CustomWidgets(StackLayout):
     def bump_activity(self):
-        CustomGridLayout.bump_activity(self)
-
-    def on_parent(self, screen, parent):
-        #print("rows: " + str(parent.rows))  #Rows = None, despite it adding for each new Custom Widget...?
-        x = parent.parent
-        pass
-
+        print(self)
+        grid_layout = self.parent
+        grid_layout.remove_widget(self)
     pass
 
 class CustomGridLayout(GridLayout):
-    def bump_activity(self):
-        # keep in mind, self is the CustomWidget
-        global widget_count
-        widget_count = widget_count - 1
-
-        # set the height of ScrollView/GridLayout to be (widget_count * 100) + label_height
-        grid_layout = self.parent
-        grid_layout.height = (widget_count * 120) + 20  
-        #list = self.ids['activity_list_layout']
-        #scroll = list.ids['scroller']
-
-        self.remove_widget(self.children[0])
-        self.remove_widget(self.children[0])
-        self.remove_widget(self.children[0])
-        #x = CustomGridLayout.ids['activity_list_layout']
-        print("bump_activity")
-
     def add_activity(self):
         # keep in mind, self is the CustomGridLayout
         global widget_count
