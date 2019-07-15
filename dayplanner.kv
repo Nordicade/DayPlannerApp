@@ -11,18 +11,14 @@
         id: top_layout
         orientation: 'vertical'
         FloatLayout:
-            size_hint : 1,1
             id: am_layout
+            size_hint : 1,1
             canvas.before:
                 Color:
                     rgba: 0, .5, .5, .9
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            Label:
-                size_hint: 1, .25
-                pos: (0,0)
-                text: 'example activity'
         StackLayout:
             spacing: 3
             padding: [3, 0, 0, 0]
@@ -207,3 +203,6 @@
         on_press: root.remove_activity()
 
 <CustomLabels>
+    Label:
+        height: 20
+        text: 'Activities'

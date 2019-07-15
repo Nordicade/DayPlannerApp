@@ -29,10 +29,13 @@ class CustomWidgets(StackLayout):
 
     pass
 
-class CustomLabels(Widget):
+class CustomLabels(Label):
     def build(self, activity_text):
-        print("building label: " + activity_text)
-        lbl = Label(text = activity_text, color = [1,1,1,1])
+        print("building label: " + activity_text + " onto " + str(self))
+        #for some reason, -.5 is the left end and .5 is the right end
+        #lbl = CustomLabels(text = activity_text, color = [1,1,1,1], outline_color = [1,1,1], pos_hint= {'x':0, 'y':0}) # <- works
+        lbl = CustomLabels(text = activity_text, color = [1,1,1,1], outline_color = [1,1,1], size_hint_x = 1, pos_hint= {'x':0, 'y':0})
+
         self.add_widget(lbl)
     #retrieve color based upon widget widget_count
     #check pos and size of existing CustomWidgets
@@ -40,11 +43,11 @@ class CustomLabels(Widget):
 
     def on_touch_move(self, touch):
         if self.collide_point(*touch.pos):
-            rint("on_touch_move")
+            print("on_touch_move: " + str(touch.pos))
 
     def on_touch_down(self, touch):
         if self.collide_point(*touch.pos):
-            print("on_touch_down")
+            print("on_touch_down: " + str(touch.pos))
 
     pass
 
