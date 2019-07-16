@@ -2,6 +2,7 @@
 # created on July 7, 2019
 
 import kivy
+import inspect
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.anchorlayout import AnchorLayout
@@ -42,28 +43,27 @@ class CustomWidgets(StackLayout):
     pass
 
 class CustomLabels(Label):
-    global widget_count
-    widget_number = widget_count
     def build(self, activity_text):
-        #widget_number = number
-        #print("building label: " + activity_text + " onto " + str(self))
-        lbl = CustomLabels(text = activity_text, size_hint_x = .083)
+        lbl = CustomLabels(text = activity_text, size_hint_x = .083, color = (1,1,1,1), outline_width = 1, outline_color= (0,0,0,1))
+        # i want to add a rectangle dimension to label, that will scale with resize, so i can forget about color
         self.add_widget(lbl)
+        print("customLabel")
 
     def on_pos(self, *args):
-        print("on_pos= " +str(self) + " is pasted onto " + str(self.parent) + " which has children# = " + str(len(self.parent.children)))
+        #print("on_pos= " +str(self) + " is pasted onto " + str(self.parent) + " which has children# = " + str(len(self.parent.children)))
         index = 1
+        print(self.canvas.before)
         self.canvas.before.clear()
         with self.canvas.before:
             for c_label in self.parent.children:
                 selected_color = color_array_bold[index % len(color_array_bold)]
+                #selected_color = color_array[index % len(color_array)]
                 r_color = selected_color[0]
                 g_color = selected_color[1]
                 b_color = selected_color[2]
                 Color(r_color, g_color, b_color, .5)
-                Rectangle(pos=self.pos, size=self.size)
-                #print("recolored for widget#: " + str(index)+ " has a pos of: " + str(self.pos) + " has a size of :" + str(self.size))
-                #print("r:" + str(r_color) + " g:"+ str(g_color) + " b:" + str(b_color))
+                Rectangle(pos=c_label.pos, size=c_label.size)
+                print("index: "+str(index)+" has: " + str(r_color) +" + "+str(g_color)+" + "+str(b_color))
                 index = index + 1
 
     def on_touch_move(self, touch):
@@ -75,7 +75,7 @@ class CustomLabels(Label):
             if not(touch.is_double_tap):
                 print("on_touch_down: " + str(touch.pos))
             else:
-                print("on_touch_double_click: " + str(touch.pos))
+                print("on_touch_double_click: " + str(touch.pos) + " removing: " + str(self))
                 #self is the custom label
                 self.parent.remove_widget(self)
 
