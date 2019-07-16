@@ -1,4 +1,4 @@
-# File name: dayplanner.kv
+# File name: DayPlanner1.kv
 # :kivy 1.11.1
 # by Nicholas Nord
 
@@ -8,18 +8,18 @@
     cols: 1
     row: 3
     BoxLayout:
+        id: top_layout
         orientation: 'vertical'
-        FloatLayout:
+        StackLayout:
+            id: am_layout
+            orientation: 'lr-tb'
+            size_hint : 1,1
             canvas.before:
                 Color:
                     rgba: 0, .5, .5, .9
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            Label:
-                size_hint: 1, .25
-                pos: (0,0)
-                text: 'example activity'
         StackLayout:
             spacing: 3
             padding: [3, 0, 0, 0]
@@ -134,16 +134,16 @@
                     Rectangle:
                         pos: self.pos
                         size: self.size
-        FloatLayout:
+        StackLayout:
+            orientation: 'lr-tb'
+            id: pm_layout
+            size_hint : 1,1
             canvas.before:
                 Color:
                     rgba: 0, .5, .5, .5
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            Label:
-                size_hint: 1, None
-                text: 'example activity'
 
     ScrollView:
         id: scroller
@@ -201,3 +201,5 @@
         font_size:'30sp'
         size_hint: .25, None
         on_press: root.remove_activity()
+
+<CustomLabels>
