@@ -50,9 +50,10 @@ class CustomLabels(Label, DragBehavior):
         self.number = widget_number
         self.am = am
         print(self.width)
-        #self.pos = (widget_number * 200 ,0)
+        self.pos = (widget_number * 200 ,0)
         duration_arr = [12,1,2,3,4,5,6,7,8,9,10,11]
         self.duration = (duration_arr[(widget_number - 1)% 12], duration_arr[(widget_number) % 12])
+        print("widget#: "+str(widget_number)+" pos: "+str(self.pos)+" size: "+str(self.size))
 
 
     global widget_count
@@ -68,16 +69,16 @@ class CustomLabels(Label, DragBehavior):
         #    return True
 
     def on_touch_up(self, touch):
-        MousDown = False
+        #MousDown = False
         if self.collide_point(*touch.pos):
             print("on_touch_up")
 
     def on_touch_down(self, touch):
-        MouseDown = True
+        #MouseDown = True
         if self.collide_point(*touch.pos):
             if not(touch.is_double_tap):
                 print("on_touch_down: " +str(self) +" to new pos: "+ str(touch.pos))
-                return True
+                #return True
             else:
                 print("on_touch_double_click: " + str(touch.pos) + " removing: " + str(self))
                 print(self.text)

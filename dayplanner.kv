@@ -216,5 +216,8 @@
     drag_rectangle: self.x, self.y, self.width, self.height
     canvas.before:
         Color:
-            rgba: 0.75,0.75,0.75,.6
+            rgba: 0.75,0.75,0.75,1
+        Rectangle:
+            pos: self.x, self.y
+            size: self.width, self.height
             #STOP HERE
