@@ -10,16 +10,22 @@
     BoxLayout:
         id: top_layout
         orientation: 'vertical'
-        StackLayout:
-            id: am_layout
-            orientation: 'lr-tb'
-            size_hint : 1,1
+        BoxLayout:
             canvas.before:
                 Color:
                     rgba: 0, .5, .5, .9
                 Rectangle:
                     pos: self.pos
                     size: self.size
+            size_hint: 1,1
+            ScatterLayout:
+                do_scale: False
+                do_rotation: False
+                do_translation_y: False
+                id: am_layout
+                orientation: 'lr-tb'
+                size_hint : 1,1
+
         StackLayout:
             spacing: 3
             padding: [3, 0, 0, 0]
@@ -205,4 +211,10 @@
 <CustomLabels>
     outline_width: 1
     outline_color: 0,0,0,1
-    size_hint: .083, None
+    size_hint: .083, 1
+    do_translation_y: True
+    drag_rectangle: self.x, self.y, self.width, self.height
+    canvas.before:
+        Color:
+            rgba: 0.75,0.75,0.75,.6
+            #STOP HERE
