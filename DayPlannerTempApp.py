@@ -43,28 +43,36 @@ class CustomWidgets(StackLayout):
     pass
 
 class CustomLabels(Label):
-    def build(self, activity_text):
-        lbl = CustomLabels(text = activity_text, size_hint_x = .083, color = (1,1,1,1), outline_width = 1, outline_color= (0,0,0,1))
-        # i want to add a rectangle dimension to label, that will scale with resize, so i can forget about color
-        self.add_widget(lbl)
-        print("customLabel")
+    activity_text = "X"
+    background = (1,1,0,.5)
+    def __init__(self, input_text, widget_num):
+        Label.__init__(self)
+        print(self)
+        self.activity_text = input_text
+        self.number = widget_num
+        self.background = (1,1,0,.5)
+    def build(self, activity_text, widget_num):
+        print(self)
+        label = Label(self.activity_text)
+        return label
 
-    def on_pos(self, *args):
+
+#    def on_pos(self, *args):
         #print("on_pos= " +str(self) + " is pasted onto " + str(self.parent) + " which has children# = " + str(len(self.parent.children)))
-        index = 1
-        print(self.canvas.before)
-        self.canvas.before.clear()
-        with self.canvas.before:
-            for c_label in self.parent.children:
-                selected_color = color_array_bold[index % len(color_array_bold)]
-                #selected_color = color_array[index % len(color_array)]
-                r_color = selected_color[0]
-                g_color = selected_color[1]
-                b_color = selected_color[2]
-                Color(r_color, g_color, b_color, .5)
-                Rectangle(pos=c_label.pos, size=c_label.size)
-                print("index: "+str(index)+" has: " + str(r_color) +" + "+str(g_color)+" + "+str(b_color))
-                index = index + 1
+#        index = 1
+#        print(self.canvas.before)
+#        self.canvas.before.clear()
+#        with self.canvas.before:
+#            for c_label in self.parent.children:
+#                selected_color = color_array_bold[index % len(color_array_bold)]
+#                #selected_color = color_array[index % len(color_array)]
+#                r_color = selected_color[0]
+#                g_color = selected_color[1]
+#                b_color = selected_color[2]
+#                Color(r_color, g_color, b_color, 1)
+#                Rectangle(pos=c_label.pos, size=c_label.size)
+#                print("index: "+str(index)+" has: " + str(r_color) +" + "+str(g_color)+" + "+str(b_color))
+#                index = index + 1
 
     def on_touch_move(self, touch):
         if self.collide_point(*touch.pos):
@@ -93,10 +101,10 @@ class CustomGridLayout(GridLayout):
         am_layout = underlying_layout.ids['am_layout']
         pm_layout = underlying_layout.ids['pm_layout']
         if(len(am_layout.children) < 12):
-            CustomLabels.build(am_layout, activity_text)
+            am_layout.add_widget(CustomLabels.build(activity_text, widget_count, widget_count))
         else:
             if(len(am_layout.children) + len(pm_layout.children) < 24):
-                CustomLabels.build(pm_layout, activity_text)
+                pm_layout.add_widget(Customlabels())
 
 
 class DayPlannerTempApp(App):
