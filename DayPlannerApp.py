@@ -24,15 +24,9 @@ color_array_bold = [[0, 1 , 1, 1], [0, 128/255, 0, 1], [192/255, 192/255, 192/25
 
 class CustomWidgets(StackLayout):
     def bump_activity(self):
-        global widget_count
-        widget_count = widget_count + 1
         CustomGridLayout.display_activity(self)
         grid_layout = self.parent
-        if widget_count <= 24:
-            grid_layout.remove_widget(self)
-            print("bump_activity")
-        else:
-            print("Schedule Full!")
+        grid_layout.remove_widget(self)
 
     def remove_activity(self):
         grid_layout = self.parent
@@ -42,38 +36,18 @@ class CustomWidgets(StackLayout):
     pass
 
 class CustomLabels(Label):
+    def __init__(self, activity_text, widget_number):
+        Label.__init__(self)
+        self.text = activity_text
+        self.number = widget_number
+        durationArr = [12,1,2,3,4,5,6,7,8,9,10,11]
+        self.duration = (durationArr[(widget_number - 1)% 12], durationArr[(widget_number) % 12])
+
     global widget_count
     widget_number = widget_count
     def build(self, activity_text):
-        #widget_number = number
-        #print("building label: " + activity_text + " onto " + str(self))
-        lbl = CustomLabels(text = activity_text, size_hint_x = .083, outline_color = (0,0,0,1), outline_width = 2)
+        lbl = CustomLabels(text = activity_text)
         self.add_widget(lbl)
-        index = 1
-        with self.canvas.before:
-            for c_label in self.children:
-                selected_color = color_array_bold[index % len(color_array_bold)]
-                r_color = selected_color[0]
-                g_color = selected_color[1]
-                b_color = selected_color[2]
-                Color(r_color, g_color, b_color, 1)
-                Rectangle(pos=c_label.pos, size=c_label.size)
-                index = index + 1
-#    def on_pos(self, *args):
-#        print("on_pos= " +str(self) + " is pasted onto " + str(self.parent) + " which has children# = " + str(len(self.parent.children)))
-#        index = 1
-#        self.canvas.before.clear()
-#        with self.canvas.before:
-#            for c_label in self.parent.children:
-#                selected_color = color_array_bold[index % len(color_array_bold)]
-#                r_color = selected_color[0]
-#                g_color = selected_color[1]
-#                b_color = selected_color[2]
-#                Color(r_color, g_color, b_color, 1)
-#                Rectangle(pos=c_label.pos, size=c_label.size)
-#                print("recolored for widget#: " + str(index)+ " has a pos of: " + str(c_label.pos) + " has a size of :" + str(c_label.size))
-#                print("r:" + str(r_color) + " g:"+ str(g_color) + " b:" + str(b_color))
-#                index = index + 1
 
 
     def on_touch_move(self, touch):
@@ -86,10 +60,7 @@ class CustomLabels(Label):
                 print("on_touch_down: " + str(touch.pos))
             else:
                 print("on_touch_double_click: " + str(touch.pos) + " removing: " + str(self))
-                #self is the custom label
-                self.parent.remove_widget(self)
-                global widget_count
-                widget_count = widget_count - 1
+
 
 class CustomGridLayout(GridLayout):
     def add_activity(self):
@@ -97,15 +68,15 @@ class CustomGridLayout(GridLayout):
         print("add_activity")
 
     def display_activity(self):
+        global widget_count
+        widget_count = widget_count + 1
         activity_text = self.ids['partB'].text
         underlying_layout = self.parent.parent.parent
         am_layout = underlying_layout.ids['am_layout']
         pm_layout = underlying_layout.ids['pm_layout']
-        if(len(am_layout.children) < 12):
-            CustomLabels.build(am_layout, activity_text)
-        else:
-            if(len(am_layout.children) + len(pm_layout.children) < 24):
-                CustomLabels.build(pm_layout, activity_text)
+        lbl = CustomLabels(activity_text, widget_count)
+        am_layout.add_widget(lbl)
+
 
 class DayPlannerApp(App):
     def build(self):
