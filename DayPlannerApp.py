@@ -42,19 +42,18 @@ class CustomWidgets(StackLayout):
 
     pass
 
-class CustomLabels(Label, DragBehavior):
+class CustomLabels(Label):
     MouseDown = False
     def __init__(self, activity_text, widget_number, am):
         Label.__init__(self)
         self.text = activity_text
         self.number = widget_number
         self.am = am
-        print(self.width)
-        self.pos = (widget_number * 200 ,0)
+        print(self.parent)
+        #self.pos = (widget_number * 100 ,0)
         duration_arr = [12,1,2,3,4,5,6,7,8,9,10,11]
         self.duration = (duration_arr[(widget_number - 1)% 12], duration_arr[(widget_number) % 12])
-        print("widget#: "+str(widget_number)+" pos: "+str(self.pos)+" size: "+str(self.size))
-
+        print(str(self) + " widget#: "+str(widget_number)+" pos: "+str(self.pos)+" size: "+str(self.size))
 
     global widget_count
     widget_number = widget_count
@@ -74,6 +73,7 @@ class CustomLabels(Label, DragBehavior):
             print("on_touch_up")
 
     def on_touch_down(self, touch):
+        global widget_count
         #MouseDown = True
         if self.collide_point(*touch.pos):
             if not(touch.is_double_tap):
@@ -87,6 +87,7 @@ class CustomLabels(Label, DragBehavior):
                 activity_list_layout.add_widget(widget)
                 widget.ids['partB'].text = self.text
                 self.parent.remove_widget(self)
+                widget_count = widget_count - 1
                 return True
 
 class CustomGridLayout(GridLayout):
