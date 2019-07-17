@@ -19,7 +19,7 @@ widget_count = 0
 color_array = [[128/255, 0 , 0, 0], [0, 128/255, 0, 0], [0, 128/255, 128/255, 0], [1, 1, 0, 0],
  [128/255, 0, 128/255, 0], [1, 0, 0, 0], [0, 0, 1, 0]]
 
-color_array_bold = [[128/255, 0 , 0, 1], [0, 128/255, 0, 1], [0, 128/255, 128/255, 1], [1, 1, 0, 1],
+color_array_bold = [[0, 1 , 1, 1], [0, 128/255, 0, 1], [192/255, 192/255, 192/255, 1], [1, 1, 0, 1],
  [128/255, 0, 128/255, 1], [1, 0, 0, 1], [0, 0, 1, 1]]
 
 class CustomWidgets(StackLayout):
@@ -47,24 +47,33 @@ class CustomLabels(Label):
     def build(self, activity_text):
         #widget_number = number
         #print("building label: " + activity_text + " onto " + str(self))
-        lbl = CustomLabels(text = activity_text, size_hint_x = .083)
+        lbl = CustomLabels(text = activity_text, size_hint_x = .083, outline_color = (0,0,0,1), outline_width = 2)
         self.add_widget(lbl)
-
-    def on_pos(self, *args):
-        print("on_pos= " +str(self) + " is pasted onto " + str(self.parent) + " which has children# = " + str(len(self.parent.children)))
         index = 1
-        self.canvas.before.clear()
         with self.canvas.before:
-            for c_label in self.parent.children:
+            for c_label in self.children:
                 selected_color = color_array_bold[index % len(color_array_bold)]
                 r_color = selected_color[0]
                 g_color = selected_color[1]
                 b_color = selected_color[2]
-                Color(r_color, g_color, b_color, .5)
-                Rectangle(pos=self.pos, size=self.size)
-                #print("recolored for widget#: " + str(index)+ " has a pos of: " + str(self.pos) + " has a size of :" + str(self.size))
-                #print("r:" + str(r_color) + " g:"+ str(g_color) + " b:" + str(b_color))
+                Color(r_color, g_color, b_color, 1)
+                Rectangle(pos=c_label.pos, size=c_label.size)
                 index = index + 1
+#    def on_pos(self, *args):
+#        print("on_pos= " +str(self) + " is pasted onto " + str(self.parent) + " which has children# = " + str(len(self.parent.children)))
+#        index = 1
+#        self.canvas.before.clear()
+#        with self.canvas.before:
+#            for c_label in self.parent.children:
+#                selected_color = color_array_bold[index % len(color_array_bold)]
+#                r_color = selected_color[0]
+#                g_color = selected_color[1]
+#                b_color = selected_color[2]
+#                Color(r_color, g_color, b_color, 1)
+#                Rectangle(pos=c_label.pos, size=c_label.size)
+#                print("recolored for widget#: " + str(index)+ " has a pos of: " + str(c_label.pos) + " has a size of :" + str(c_label.size))
+#                print("r:" + str(r_color) + " g:"+ str(g_color) + " b:" + str(b_color))
+#                index = index + 1
 
 
     def on_touch_move(self, touch):
@@ -79,6 +88,8 @@ class CustomLabels(Label):
                 print("on_touch_double_click: " + str(touch.pos) + " removing: " + str(self))
                 #self is the custom label
                 self.parent.remove_widget(self)
+                global widget_count
+                widget_count = widget_count - 1
 
 class CustomGridLayout(GridLayout):
     def add_activity(self):
