@@ -66,15 +66,19 @@ class CustomLabels(Label):
                 #print("r:" + str(r_color) + " g:"+ str(g_color) + " b:" + str(b_color))
                 index = index + 1
 
+
     def on_touch_move(self, touch):
         if self.collide_point(*touch.pos):
             print("on_touch_move: " + str(touch.pos))
 
     def on_touch_down(self, touch):
         if self.collide_point(*touch.pos):
-            print("on_touch_down: " + str(touch.pos))
-
-    pass
+            if not(touch.is_double_tap):
+                print("on_touch_down: " + str(touch.pos))
+            else:
+                print("on_touch_double_click: " + str(touch.pos) + " removing: " + str(self))
+                #self is the custom label
+                self.parent.remove_widget(self)
 
 class CustomGridLayout(GridLayout):
     def add_activity(self):
@@ -91,7 +95,6 @@ class CustomGridLayout(GridLayout):
         else:
             if(len(am_layout.children) + len(pm_layout.children) < 24):
                 CustomLabels.build(pm_layout, activity_text)
-
 
 class DayPlannerApp(App):
     def build(self):
