@@ -8,6 +8,7 @@ from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.stacklayout import StackLayout
 from kivy.uix.scatterlayout import ScatterLayout
+from kivy.uix.scatter import Scatter
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.floatlayout import FloatLayout
 from kivy.graphics import Color, Rectangle
@@ -43,24 +44,15 @@ class CustomWidgets(StackLayout):
     pass
 
 class CustomLabels(Label):
-    MouseDown = False
     def __init__(self, activity_text, widget_number, am):
         Label.__init__(self)
         self.text = activity_text
         self.number = widget_number
         self.am = am
-        print(self.parent)
         #self.pos = (widget_number * 100 ,0)
         duration_arr = [12,1,2,3,4,5,6,7,8,9,10,11]
         self.duration = (duration_arr[(widget_number - 1)% 12], duration_arr[(widget_number) % 12])
         print(str(self) + " widget#: "+str(widget_number)+" pos: "+str(self.pos)+" size: "+str(self.size))
-
-    global widget_count
-    widget_number = widget_count
-    def build(self, activity_text):
-        lbl = CustomLabels(text = activity_text)
-        self.add_widget(lbl)
-
 
     def on_touch_move(self, touch):
         if self.collide_point(*touch.pos):
@@ -81,14 +73,17 @@ class CustomLabels(Label):
                 #return True
             else:
                 print("on_touch_double_click: " + str(touch.pos) + " removing: " + str(self))
-                print(self.text)
+                print(self.parent.parent.parent.parent.parent.parent)
                 activity_list_layout = self.parent.parent.parent.parent.parent.ids['activity_list_layout']
                 widget = CustomWidgets(self.text)
                 activity_list_layout.add_widget(widget)
                 widget.ids['partB'].text = self.text
                 self.parent.remove_widget(self)
                 widget_count = widget_count - 1
+                print(widget_count)
                 return True
+        else:
+            print(self)
 
 class CustomGridLayout(GridLayout):
     def add_activity(self):
@@ -104,7 +99,16 @@ class CustomGridLayout(GridLayout):
         pm_layout = underlying_layout.ids['pm_layout']
         # add check to see whether am or pm (true or false)
         lbl = CustomLabels(activity_text, widget_count, True)
-        am_layout.add_widget(lbl)
+        scatter = Scatter()
+        scatter.do_translation_y = False
+        scatter.do_scale = False
+        scatter.do_rotation = False
+        scatter.pos = (0,0)
+        scatter.scale = 1
+                        #do_scale: False
+                        #do_rotation: False
+        scatter.add_widget(lbl)
+        am_layout.add_widget(scatter)
         if(len(c_label_arr) == 0):
             c_label_arr.append(lbl)
         else:

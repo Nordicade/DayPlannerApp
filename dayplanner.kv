@@ -18,12 +18,9 @@
                     pos: self.pos
                     size: self.size
             size_hint: 1,1
-            ScatterLayout:
-                do_scale: False
-                do_rotation: False
-                do_translation_y: False
+            RelativeLayout:
                 id: am_layout
-                orientation: 'lr-tb'
+                #orientation: 'lr-tb'
                 size_hint : 1,1
 
         StackLayout:
@@ -209,17 +206,14 @@
         on_press: root.remove_activity()
 
 <CustomLabels>
-    ScatterLayout:
-        size_hint: .083,1
-        Label:
-            outline_width: 1
-            outline_color: 0,0,0,1
-            size_hint: 1, 1
-            do_translation_y: True
-            canvas.before:
-                Color:
-                    rgba: 0.75,0.75,0.75,1
-                Rectangle:
-                    pos: self.x, self.y
-                    size: self.width, self.height
-                    #STOP HERE
+    size_hint: .083, 1
+    outline_width: 1
+    outline_color: 0,0,0,1
+    #scale: .083, 1
+    canvas.before:
+        Color:
+            rgba: 0.75,0.75,0.75,.6
+        Rectangle:
+            pos: self.x, self.y
+            size: self.width , self.height
+            #STOP HERE
