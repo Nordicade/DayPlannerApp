@@ -15,8 +15,6 @@ from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
 from kivy.uix.behaviors import DragBehavior
 
-#if you ctrl+z to this point, you've gone too far
-
 widget_count = 0
 mouse_down = False
 color_array = [[128/255, 0 , 0, 0], [0, 128/255, 0, 0], [0, 128/255, 128/255, 0], [1, 1, 0, 0],
@@ -39,7 +37,6 @@ class CustomWidgets(StackLayout):
     def remove_activity(self):
         grid_layout = self.parent
         grid_layout.remove_widget(self)
-        print("remove_activity")
 
     pass
 
@@ -68,6 +65,7 @@ class CustomLabels(Label):
         if mouse_down is not None:
             global mouse_down_pos
             print("move() touch:" +str(touch.pos[0]) +" to new pos: "+ str(touch.pos))
+            #custom drag method
             mouse_offset_from_pos = (mouse_down_pos) - self.pos[0]
             change_in_x = touch.pos[0] - (mouse_down_pos)
             self.pos = (touch.pos[0] + change_in_x, 0)
@@ -95,9 +93,6 @@ class CustomLabels(Label):
                 mouse_down_pos = (touch.pos[0])
                 #return True
             else:
-                print("on_touch_double_click: " + str(touch.pos) + " removing: " + str(self))
-                print(self.text)
-                print(self.parent.parent.parent.parent)
                 activity_list_layout = self.parent.parent.parent.parent.ids['activity_list_layout']
                 widget = CustomWidgets(self.text)
                 activity_list_layout.add_widget(widget)
@@ -105,8 +100,6 @@ class CustomLabels(Label):
                 self.parent.remove_widget(self)
                 widget_count = widget_count - 1
                 return True
-        else:
-            print("self:" + str(self) + " pos: " + str(self.pos))
 
 class CustomGridLayout(GridLayout):
     def add_activity(self):
@@ -129,17 +122,6 @@ class CustomGridLayout(GridLayout):
             for c_label in c_label_arr:
                 x = c_label.duration
 
-    def scroller(self):
-        print("scroll attempted")
-
-#class DragLabel(Label, DragBehavior):
-#    def __init__(self,Label):
-#       super(DragLabel, self).__init__()
-#       self.drag_rect_width = self.x
-#       self.drag_rect_height = self.y
-#       self.drag_timeout = 10000000
-#       self.drag_distance = 0
-#    pass
 
 class DayPlannerApp(App):
     def build(self):

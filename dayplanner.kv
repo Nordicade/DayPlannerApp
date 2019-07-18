@@ -13,7 +13,6 @@
         scroll_type:['bars', 'content']
         do_scroll_x: True
         do_scroll_y: False
-        on_scroll_start: root.scroller()
         BoxLayout:
             orientation: 'vertical'
             id: top_layout
@@ -24,16 +23,9 @@
                 orientation: 'lr-tb'
                 size_hint_x: None
                 width: 2500
-                canvas.before:
-                    Color:
-                        rgba: 0, .5, .5, .9
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-
             StackLayout:
-                spacing: 3
-                padding: [3, 0, 0, 0]
+                spacing: 4
+                #padding: [3, 0, 0, 0]
                 orientation: 'lr-tb'
                 #size_hint_y: None
                 #height: 60
