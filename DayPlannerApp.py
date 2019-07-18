@@ -16,6 +16,7 @@ from kivy.uix.widget import Widget
 from kivy.uix.behaviors import DragBehavior
 
 widget_count = 0
+mouse_down_pos = 0
 mouse_down = False
 color_array = [[128/255, 0 , 0, 0], [0, 128/255, 0, 0], [0, 128/255, 128/255, 0], [1, 1, 0, 0],
  [128/255, 0, 128/255, 0], [1, 0, 0, 0], [0, 0, 1, 0]]
@@ -64,11 +65,14 @@ class CustomLabels(Label):
 #        if self.collide_point(*touch.pos):
         if mouse_down is not None:
             global mouse_down_pos
-            print("move() touch:" +str(touch.pos[0]) +" to new pos: "+ str(touch.pos))
-            #custom drag method
-            mouse_offset_from_pos = (mouse_down_pos) - self.pos[0]
+            print("move() touch:" +str(mouse_down.text) +" to new pos: "+ str(touch.pos[0]))
+
+            #custom drag method ( smooth/accurate drag, but offsets on 1 movement)
+            mouse_offset_from_pos = (mouse_down_pos) - mouse_down.pos[0]
             change_in_x = touch.pos[0] - (mouse_down_pos)
-            self.pos = (touch.pos[0] + change_in_x, 0)
+            mouse_down.pos = (mouse_down.pos[0] + (change_in_x), 0)
+            mouse_down_pos = touch.pos[0]
+
             #check for offscreen
             if (self.pos[0] < 0):
                 self.pos = (0,0)
@@ -84,14 +88,16 @@ class CustomLabels(Label):
         global widget_count
         global mouse_down_pos
         global mouse_down
-        print(mouse_down)
         if self.collide_point(*touch.pos):
             mouse_down = self
-            print("the text of the label that SHOULD move is: "  + str(self.text))
             if not(touch.is_double_tap):
-                print("on_touch_down: " +str(self) +" to new pos: "+ str(touch.pos))
+                print("on_touch_down: " +str(self.text) +" current pos: "+ str(touch.pos[0]))
                 mouse_down_pos = (touch.pos[0])
                 #return True
+
+            #adding multitouch to increase size
+            #elif
+
             else:
                 activity_list_layout = self.parent.parent.parent.parent.ids['activity_list_layout']
                 widget = CustomWidgets(self.text)
