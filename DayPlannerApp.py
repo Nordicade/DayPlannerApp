@@ -75,11 +75,13 @@ class CustomLabels(Label):
             change_in_x = touch.pos[0] - (mouse_down_pos)
             self.pos = (touch.pos[0] + change_in_x, 0)
             #check for offscreen
-            print(self.parent.parent.parent.parent.width)
+            print(self.parent)
             if (self.pos[0] < 0):
                 self.pos = (0,0)
-            if (self.pos[0] + self.width >= self.parent.parent.parent.parent.width):
-                self.pos = (800 - self.width, 0)
+#            if (self.pos[0] + self.width >= self.parent.parent.parent.parent.width):
+#                self.pos = (self.parent.parent.parent.parent.width - self.width, 0)
+            if (self.pos[0] + self.width >= self.parent.width):
+                self.pos = (self.parent.width - self.width, 0)
             return True
 
     def on_touch_up(self, touch):
@@ -102,7 +104,8 @@ class CustomLabels(Label):
             else:
                 print("on_touch_double_click: " + str(touch.pos) + " removing: " + str(self))
                 print(self.text)
-                activity_list_layout = self.parent.parent.parent.parent.ids['activity_list_layout']
+                print(self.parent.parent.parent.parent.parent)
+                activity_list_layout = self.parent.parent.parent.parent.parent.ids['activity_list_layout']
                 widget = CustomWidgets(self.text)
                 activity_list_layout.add_widget(widget)
                 widget.ids['partB'].text = self.text
@@ -123,7 +126,6 @@ class CustomGridLayout(GridLayout):
         activity_text = self.ids['partB'].text
         underlying_layout = self.parent.parent.parent
         am_layout = underlying_layout.ids['am_layout']
-        pm_layout = underlying_layout.ids['pm_layout']
         # add check to see whether am or pm (true or false)
         lbl = CustomLabels(activity_text, widget_count, True)
 #        drag = DragLabel(lbl)
@@ -134,6 +136,9 @@ class CustomGridLayout(GridLayout):
             for c_label in c_label_arr:
                 x = c_label.duration
                 print(x)
+
+    def scroller(self):
+        print("scroll attempted")
 
 #class DragLabel(Label, DragBehavior):
 #    def __init__(self,Label):

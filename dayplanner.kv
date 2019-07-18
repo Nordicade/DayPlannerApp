@@ -7,149 +7,166 @@
     orientation: 'vertical'
     cols: 1
     row: 3
-    BoxLayout:
-        id: top_layout
-        orientation: 'vertical'
+    ScrollView:
+        id: scroller_time
+        width: 2400
+        scroll_type:['bars', 'content']
+        do_scroll_x: True
+        do_scroll_y: False
+        on_scroll_start: root.scroller()
         BoxLayout:
-            canvas.before:
-                Color:
-                    rgba: 0, .5, .5, .9
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            size_hint: 1,1
-            RelativeLayout:
-                id: am_layout
-                orientation: 'lr-tb'
-                size_hint : 1,1
+            cols: 1
+            rows: 2
+            id: top_layout
+            orientation: 'vertical'
+            BoxLayout:
+                size_hint_x: None
+                width: 2400
+                canvas.before:
+                    Color:
+                        rgba: 0, .5, .5, .9
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                size_hint: 1,1
+                RelativeLayout:
+                    id: am_layout
+                    orientation: 'lr-tb'
+                    #size_hint : 1,1
+                    size_hint_x: None
+                    width: 2400
 
-        StackLayout:
-            spacing: 3
-            padding: [3, 0, 0, 0]
-            orientation: 'lr-tb'
-            size_hint_y: None
-            height: 20
-            Label:
-                size_hint_x: .083
-                text: '12'
-                canvas.before:
-                    Color:
-                        rgba: 0.75,0.75,0.75,.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size_hint_x: .083
-                text: '1'
-                canvas.before:
-                    Color:
-                        rgba: 0.75,0.75,0.75,.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size_hint_x: .083
-                text: '2'
-                canvas.before:
-                    Color:
-                        rgba: 0.75,0.75,0.75,.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size_hint_x: .083
-                text: '3'
-                canvas.before:
-                    Color:
-                        rgba: 0.75,0.75,0.75,.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size_hint_x: .083
-                text: '4'
-                canvas.before:
-                    Color:
-                        rgba: 0.75,0.75,0.75,.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size_hint_x: .083
-                text: '5'
-                canvas.before:
-                    Color:
-                        rgba: 0.75,0.75,0.75,.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size_hint_x: .083
-                text: '6'
-                canvas.before:
-                    Color:
-                        rgba: 0.75,0.75,0.75,.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size_hint_x: .083
-                text: '7'
-                canvas.before:
-                    Color:
-                        rgba: 0.75,0.75,0.75,.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size_hint_x: .083
-                text: '8'
-                canvas.before:
-                    Color:
-                        rgba: 0.75,0.75,0.75,.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size_hint_x: .083
-                text: '9'
-                canvas.before:
-                    Color:
-                        rgba: 0.75,0.75,0.75,.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size_hint_x: .083
-                text: '10'
-                canvas.before:
-                    Color:
-                        rgba: 0.75,0.75,0.75,.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-            Label:
-                size_hint_x: .083
-                text: '11'
-                canvas.before:
-                    Color:
-                        rgba: 0.75,0.75,0.75,.6
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-        StackLayout:
-            orientation: 'lr-tb'
-            id: pm_layout
-            size_hint : 1,1
-            canvas.before:
-                Color:
-                    rgba: 0, .5, .5, .5
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
+            StackLayout:
+                spacing: 3
+                padding: [3, 0, 0, 0]
+                orientation: 'lr-tb'
+                cols: 1
+                rows:1
+                size_hint_y: None
+                height: 20
+                Label:
+                    size_hint_x: None
+                    width: 100
+                    text: '12'
+                    canvas.before:
+                        Color:
+                            rgba: 0.75,0.75,0.75,.6
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    size_hint_x: None
+                    width: 100
+                    text: '1'
+                    canvas.before:
+                        Color:
+                            rgba: 0.75,0.75,0.75,.6
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    size_hint_x: None
+                    width: 100
+                    text: '2'
+                    canvas.before:
+                        Color:
+                            rgba: 0.75,0.75,0.75,.6
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    size_hint_x: None
+                    width: 100
+                    text: '3'
+                    canvas.before:
+                        Color:
+                            rgba: 0.75,0.75,0.75,.6
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    size_hint_x: None
+                    width: 100
+                    text: '4'
+                    canvas.before:
+                        Color:
+                            rgba: 0.75,0.75,0.75,.6
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    size_hint_x: None
+                    width: 100
+                    text: '5'
+                    canvas.before:
+                        Color:
+                            rgba: 0.75,0.75,0.75,.6
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    size_hint_x: None
+                    width: 100
+                    text: '6'
+                    canvas.before:
+                        Color:
+                            rgba: 0.75,0.75,0.75,.6
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    size_hint_x: None
+                    width: 100
+                    text: '7'
+                    canvas.before:
+                        Color:
+                            rgba: 0.75,0.75,0.75,.6
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    size_hint_x: None
+                    width: 100
+                    text: '8'
+                    canvas.before:
+                        Color:
+                            rgba: 0.75,0.75,0.75,.6
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    size_hint_x: None
+                    width: 100
+                    text: '9'
+                    canvas.before:
+                        Color:
+                            rgba: 0.75,0.75,0.75,.6
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    size_hint_x: None
+                    width: 100
+                    text: '10'
+                    canvas.before:
+                        Color:
+                            rgba: 0.75,0.75,0.75,.6
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    size_hint_x: None
+                    width: 100
+                    text: '11'
+                    canvas.before:
+                        Color:
+                            rgba: 0.75,0.75,0.75,.6
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
 
     ScrollView:
-        id: scroller
+        id: scroller_activity
         GridLayout:
             id: activity_list_layout
             height: self.minimum_height
