@@ -74,6 +74,12 @@ class CustomLabels(Label):
             mouse_offset_from_pos = (mouse_down_pos) - self.pos[0]
             change_in_x = touch.pos[0] - (mouse_down_pos)
             self.pos = (touch.pos[0] + change_in_x, 0)
+            #check for offscreen
+            print(self.parent.parent.parent.parent.width)
+            if (self.pos[0] < 0):
+                self.pos = (0,0)
+            if (self.pos[0] + self.width >= self.parent.parent.parent.parent.width):
+                self.pos = (800 - self.width, 0)
             return True
 
     def on_touch_up(self, touch):
