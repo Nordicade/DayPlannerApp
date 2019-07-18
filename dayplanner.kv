@@ -1,4 +1,4 @@
-# File name: DayPlanner1.kv
+# File name: DayPlanner.kv
 # :kivy 1.11.1
 # by Nicholas Nord
 
@@ -20,7 +20,7 @@
             size_hint: 1,1
             RelativeLayout:
                 id: am_layout
-                #orientation: 'lr-tb'
+                orientation: 'lr-tb'
                 size_hint : 1,1
 
         StackLayout:
@@ -206,14 +206,17 @@
         on_press: root.remove_activity()
 
 <CustomLabels>
-    size_hint: .083, 1
     outline_width: 1
     outline_color: 0,0,0,1
-    #scale: .083, 1
+    size_hint: .083, 1
+    do_translation_y: True
+    #drag_rectangle: self.x, self.y, self.width, self.height
+    #drag_timeout: 10000000
+    #drag_distance: 0
     canvas.before:
         Color:
-            rgba: 0.75,0.75,0.75,.6
+            rgba: 0.75,0.75,0.75,1
         Rectangle:
             pos: self.x, self.y
-            size: self.width , self.height
+            size: self.width, self.height
             #STOP HERE
