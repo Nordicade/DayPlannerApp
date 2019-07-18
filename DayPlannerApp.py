@@ -17,7 +17,8 @@ from kivy.uix.behaviors import DragBehavior
 
 widget_count = 0
 mouse_down_pos = 0
-mouse_down = False
+mouse_down = None
+multitouch = False
 color_array = [[128/255, 0 , 0, 0], [0, 128/255, 0, 0], [0, 128/255, 128/255, 0], [1, 1, 0, 0],
  [128/255, 0, 128/255, 0], [1, 0, 0, 0], [0, 0, 1, 0]]
 
@@ -60,10 +61,9 @@ class CustomLabels(Label):
         lbl = CustomLabels(text = activity_text)
         self.add_widget(lbl)
 
-
     def on_touch_move(self, touch):
 #        if self.collide_point(*touch.pos):
-        if mouse_down is not None:
+        if mouse_down is not None and mouse_down.collide_point(*touch.pos):
             global mouse_down_pos
             print("move() touch:" +str(mouse_down.text) +" to new pos: "+ str(touch.pos[0]))
 
@@ -80,25 +80,34 @@ class CustomLabels(Label):
                 self.pos = (self.parent.width - self.width, 0)
             return True
 
+            #adding multitouch to increase size
+
     def on_touch_up(self, touch):
         global mouse_down
         mouse_down = None
+        print("touch_up")
+        return True
 
     def on_touch_down(self, touch):
         global widget_count
         global mouse_down_pos
         global mouse_down
-        if self.collide_point(*touch.pos):
+        print("touch_down")
+
+        #this doesnt work when any widgets overlap....
+        if mouse_down is not None:
+            print("multitouch: self: "+ str(self.text))
+            self.crash()
+
+        if self.collide_point(*touch.pos): #and (mouse_down is None):
             mouse_down = self
+            print("--->" + str(mouse_down))
             if not(touch.is_double_tap):
                 print("on_touch_down: " +str(self.text) +" current pos: "+ str(touch.pos[0]))
                 mouse_down_pos = (touch.pos[0])
-                #return True
+                return True
 
-            #adding multitouch to increase size
-            #elif
-
-            else:
+            elif touch.is_double_tap:
                 activity_list_layout = self.parent.parent.parent.parent.ids['activity_list_layout']
                 widget = CustomWidgets(self.text)
                 activity_list_layout.add_widget(widget)
