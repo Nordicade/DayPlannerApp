@@ -49,8 +49,6 @@ class CustomLabels(Label):
         Label.__init__(self)
         self.text = activity_text
         self.number = widget_number
-        self.am = am
-        print(self.width)
         self.pos = (0,0)
         duration_arr = [12,1,2,3,4,5,6,7,8,9,10,11]
         self.duration = (duration_arr[(widget_number - 1)% 12], duration_arr[(widget_number) % 12])
@@ -69,17 +67,13 @@ class CustomLabels(Label):
 #        if self.collide_point(*touch.pos):
         if mouse_down is not None:
             global mouse_down_pos
-            print(mouse_down_pos)
             print("move() touch:" +str(touch.pos[0]) +" to new pos: "+ str(touch.pos))
             mouse_offset_from_pos = (mouse_down_pos) - self.pos[0]
             change_in_x = touch.pos[0] - (mouse_down_pos)
             self.pos = (touch.pos[0] + change_in_x, 0)
             #check for offscreen
-            print(self.parent)
             if (self.pos[0] < 0):
                 self.pos = (0,0)
-#            if (self.pos[0] + self.width >= self.parent.parent.parent.parent.width):
-#                self.pos = (self.parent.parent.parent.parent.width - self.width, 0)
             if (self.pos[0] + self.width >= self.parent.width):
                 self.pos = (self.parent.width - self.width, 0)
             return True
@@ -99,13 +93,12 @@ class CustomLabels(Label):
             if not(touch.is_double_tap):
                 print("on_touch_down: " +str(self) +" to new pos: "+ str(touch.pos))
                 mouse_down_pos = (touch.pos[0])
-                print(mouse_down_pos)
                 #return True
             else:
                 print("on_touch_double_click: " + str(touch.pos) + " removing: " + str(self))
                 print(self.text)
-                print(self.parent.parent.parent.parent.parent)
-                activity_list_layout = self.parent.parent.parent.parent.parent.ids['activity_list_layout']
+                print(self.parent.parent.parent.parent)
+                activity_list_layout = self.parent.parent.parent.parent.ids['activity_list_layout']
                 widget = CustomWidgets(self.text)
                 activity_list_layout.add_widget(widget)
                 widget.ids['partB'].text = self.text
@@ -135,7 +128,6 @@ class CustomGridLayout(GridLayout):
         else:
             for c_label in c_label_arr:
                 x = c_label.duration
-                print(x)
 
     def scroller(self):
         print("scroll attempted")
