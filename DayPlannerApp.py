@@ -74,13 +74,11 @@ class CustomLabels(Label):
             mouse_down_pos = touch.pos[0]
 
             #check for offscreen
-            if (self.pos[0] < 0):
-                self.pos = (0,0)
-            if (self.pos[0] + self.width >= self.parent.width):
-                self.pos = (self.parent.width - self.width, 0)
+            if (mouse_down.pos[0] < 0):
+                mouse_down.pos = (0,0)
+            if (mouse_down.pos[0] + mouse_down.width >= mouse_down.parent.width):
+                mouse_down.pos = (mouse_down.parent.width - mouse_down.width, 0)
             return True
-
-            #adding multitouch to increase size
 
     def on_touch_up(self, touch):
         global mouse_down
@@ -94,7 +92,6 @@ class CustomLabels(Label):
         global mouse_down
         print("touch_down")
 
-        #this doesnt work when any widgets overlap....
         if mouse_down is not None:
             print("multitouch: self: "+ str(self.text))
             self.crash()
