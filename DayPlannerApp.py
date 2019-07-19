@@ -18,6 +18,7 @@ from kivy.uix.behaviors import DragBehavior
 widget_count = 0
 mouse_down_pos = 0
 mouse_down = None
+mouse_down_orig_hint = 0
 multitouch = False
 color_array = [[128/255, 0 , 0, 0], [0, 128/255, 0, 0], [0, 128/255, 128/255, 0], [1, 1, 0, 0],
  [128/255, 0, 128/255, 0], [1, 0, 0, 0], [0, 0, 1, 0]]
@@ -62,9 +63,18 @@ class CustomLabels(Label):
         self.add_widget(lbl)
 
     def on_touch_move(self, touch):
+        global multitouch
+        global mouse_down_pos
+        global mouse_down_orig_hint
+        if multitouch is True:
+            #print("MULTI! self_hint_x: "+str(self.size_hint_x)+ " and touch.pos: "+ str(touch.pos[0]) + " anchor: " + str(mouse_down_pos))
+            #perfect! self.pos is label pos, mouse_down_pos is anchor, and touch.pos is the change in size
+            fractional_size_change = ( touch.pos[0] - mouse_down_pos ) / self.parent.parent.width
+            new_size_hint = mouse_down_orig_hint + fractional_size_change
+            self.size_hint_x = new_size_hint
+
 #        if self.collide_point(*touch.pos):
-        if mouse_down is not None and mouse_down.collide_point(*touch.pos):
-            global mouse_down_pos
+        elif mouse_down is not None and mouse_down.collide_point(*touch.pos):
             print("move() touch:" +str(mouse_down.text) +" to new pos: "+ str(touch.pos[0]))
 
             #custom drag method ( smooth/accurate drag, but offsets on 1 movement)
@@ -82,7 +92,9 @@ class CustomLabels(Label):
 
     def on_touch_up(self, touch):
         global mouse_down
+        global multitouch
         mouse_down = None
+        multitouch = False
         print("touch_up")
         return True
 
@@ -90,26 +102,33 @@ class CustomLabels(Label):
         global widget_count
         global mouse_down_pos
         global mouse_down
+        global mouse_down_orig_hint
+        global multitouch
         print("touch_down")
 
-        if mouse_down is not None:
+        if mouse_down is not None and not touch.is_double_tap:
             print("multitouch: self: "+ str(self.text))
-            self.crash()
+            multitouch = True
+            #self.crash()  #used to test when a multitouch is found
+            # KEEP IN MIND: self and mouse_down are EQUIVALENT
+            # likely solution is to set multitouch = True and handle resize within on_touch_move
 
         if self.collide_point(*touch.pos): #and (mouse_down is None):
             mouse_down = self
-            print("--->" + str(mouse_down))
+            mouse_down_orig_hint = self.size_hint_x
             if not(touch.is_double_tap):
                 print("on_touch_down: " +str(self.text) +" current pos: "+ str(touch.pos[0]))
                 mouse_down_pos = (touch.pos[0])
                 return True
 
             elif touch.is_double_tap:
+                print("double tap")
                 activity_list_layout = self.parent.parent.parent.parent.ids['activity_list_layout']
                 widget = CustomWidgets(self.text)
                 activity_list_layout.add_widget(widget)
                 widget.ids['partB'].text = self.text
                 self.parent.remove_widget(self)
+                mouse_down = None
                 widget_count = widget_count - 1
                 return True
 
