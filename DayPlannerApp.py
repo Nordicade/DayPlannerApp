@@ -44,7 +44,6 @@ class CustomWidgets(StackLayout):
     pass
 
 class CustomLabels(Label):
-    mouse_down_x = 0
     def __init__(self, activity_text, widget_number, am):
         Label.__init__(self)
         self.text = activity_text
@@ -69,10 +68,11 @@ class CustomLabels(Label):
         if multitouch is True:
             fractional_size_change = ( touch.pos[0] - mouse_down_pos ) / mouse_down.parent.parent.width
             new_size_hint = mouse_down_orig_hint + fractional_size_change
+            print(new_size_hint)
 
             #check for offscreen
-            if new_size_hint < .01:
-                mosue_down.size_hint_x = .01
+            if new_size_hint < 0.0128:
+                mouse_down.size_hint_x = 0.0128
                 return True
             elif mouse_down.pos[0] + (new_size_hint *mouse_down.parent.parent.width) >= mouse_down.parent.parent.width:
                 pass
@@ -116,9 +116,6 @@ class CustomLabels(Label):
         if mouse_down is not None and not touch.is_double_tap:
             print("multitouch: self: "+ str(self.text))
             multitouch = True
-            #self.crash()  #used to test when a multitouch is found
-            # KEEP IN MIND: self and mouse_down are EQUIVALENT
-            # likely solution is to set multitouch = True and handle resize within on_touch_move
 
         if self.collide_point(*touch.pos): #and (mouse_down is None):
             mouse_down = self
@@ -150,22 +147,13 @@ class CustomGridLayout(GridLayout):
         activity_text = self.ids['partB'].text
         underlying_layout = self.parent.parent.parent
         am_layout = underlying_layout.ids['am_layout']
-        # add check to see whether am or pm (true or false)
         lbl = CustomLabels(activity_text, widget_count, True)
-#        drag = DragLabel(lbl)
         am_layout.add_widget(lbl)
-        if(len(c_label_arr) == 0):
-            c_label_arr.append(lbl)
-        else:
-            for c_label in c_label_arr:
-                x = c_label.duration
-
 
 class DayPlannerApp(App):
     def build(self):
         underlying_layout = CustomGridLayout()
         return underlying_layout
-
 
 if __name__ == "__main__":
     DayPlannerApp().run()
