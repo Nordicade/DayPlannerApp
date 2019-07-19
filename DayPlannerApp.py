@@ -67,16 +67,19 @@ class CustomLabels(Label):
         global mouse_down_pos
         global mouse_down_orig_hint
         if multitouch is True:
-            fractional_size_change = ( touch.pos[0] - mouse_down_pos ) / self.parent.parent.width
+            fractional_size_change = ( touch.pos[0] - mouse_down_pos ) / mouse_down.parent.parent.width
             new_size_hint = mouse_down_orig_hint + fractional_size_change
 
             #check for offscreen
             if new_size_hint < .01:
-                self.size_hint_x = .01
-            elif self.pos[0] + (new_size_hint *self.parent.parent.width) >= self.parent.parent.width:
+                mosue_down.size_hint_x = .01
+                return True
+            elif mouse_down.pos[0] + (new_size_hint *mouse_down.parent.parent.width) >= mouse_down.parent.parent.width:
                 pass
+                return True
             else:
-                self.size_hint_x = new_size_hint
+                mouse_down.size_hint_x = new_size_hint
+                return True
 
         elif mouse_down is not None and mouse_down.collide_point(*touch.pos):
             print("move() touch:" +str(mouse_down.text) +" to new pos: "+ str(touch.pos[0]))
