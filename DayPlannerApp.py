@@ -20,13 +20,11 @@ mouse_down_pos = 0
 mouse_down = None
 mouse_down_orig_hint = 0
 multitouch = False
-color_array = [[128/255, 0 , 0, 0], [0, 128/255, 0, 0], [0, 128/255, 128/255, 0], [1, 1, 0, 0],
- [128/255, 0, 128/255, 0], [1, 0, 0, 0], [0, 0, 1, 0]]
+color_array = [[0, 1 , 1, .6], [0, 128/255, 0, .6], [192/255, 192/255, 192/255, .6], [1, 1, 0, .6],
+ [128/255, 0, 128/255, .6], [128/255, 0, 0, .6], [0, 0, 1, .6]]
 
 color_array_bold = [[0, 1 , 1, 1], [0, 128/255, 0, 1], [192/255, 192/255, 192/255, 1], [1, 1, 0, 1],
- [128/255, 0, 128/255, 1], [1, 0, 0, 1], [0, 0, 1, 1]]
-
-c_label_arr = []
+ [128/255, 0, 128/255, 1], [128/255, 0, 0, 1], [0, 0, 1, 1]]
 
 class CustomWidgets(StackLayout):
     def __init__(self, activity_text):
@@ -41,16 +39,15 @@ class CustomWidgets(StackLayout):
         grid_layout = self.parent
         grid_layout.remove_widget(self)
 
-    pass
-
 class CustomLabels(Label):
+
     def __init__(self, activity_text, widget_number, am):
+        #self.background_color = color_array_bold[widget_number % len(color_array_bold)]
+        self.background_color = color_array[widget_number % len(color_array)]
         Label.__init__(self)
         self.text = activity_text
         self.number = widget_number
         self.pos = (0,0)
-        duration_arr = [12,1,2,3,4,5,6,7,8,9,10,11]
-        self.duration = (duration_arr[(widget_number - 1)% 12], duration_arr[(widget_number) % 12])
         print("widget#: "+str(widget_number)+" pos: "+str(self.pos)+" size: "+str(self.size))
 
 
@@ -133,7 +130,7 @@ class CustomLabels(Label):
                 widget.ids['partB'].text = self.text
                 self.parent.remove_widget(self)
                 mouse_down = None
-                widget_count = widget_count - 1
+                #widget_count = widget_count - 1
                 return True
 
 class CustomGridLayout(GridLayout):
